@@ -1,4 +1,5 @@
 ;(function (ns) {
+  'use strict';
   ns.view = ns.view || {};
   ns.view.About = Backbone.View.extend({
     events: {
