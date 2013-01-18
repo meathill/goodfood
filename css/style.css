@@ -1,0 +1,64 @@
+/* 
+    Document   : style.css
+    Created on : 2013-1-18, 7:04:10
+    Author     : 路佳
+    Description:
+        项目样式
+*/
+
+.hide {
+  display:none;
+}
+
+.icon-info {
+  width: 20px;
+  height:20px;
+  border-radius: 10px;
+  background:#CCC;
+  color:#000;
+  display: inline-block;
+  text-align: center;
+  padding: 0 2px 2px 0;
+  text-shadow: 0 1px 0 #FFF;
+  font-weight: bold;
+}
+
+.main h2 {
+  font:bold 16px/30px Helvetica, Microsoft Yahei, Simhei;
+  background:#505050;
+  padding:0 10px;
+  color:#FFF;
+}
+.main ul {
+  overflow:hidden;
+}
+.main li {
+  float:left;
+  list-style: none;
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.5), inset -1px 0 0 rgba(0, 0, 0, 0.4);
+}
+#weekdays li {
+  width:14.2857%;
+}
+#today li {
+  width:14.2857%;
+  height:45px;
+}
+#summary li {
+  width:50%;
+  min-height:75px;
+  text-align: center;
+  line-height: 75px;
+}
+
+article {
+  line-height:22px;
+  padding:20px;
+}
+article p {
+  text-indent: 28px;
+  margin-bottom: 10px;
+}
+article p:last-child {
+  margin-bottom: 0;
+}
