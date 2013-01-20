@@ -1,33 +1,47 @@
 ;(function (ns) {
   'use strict';
-  var Item = Backbone.View.extend({
-    template: null,
-    initialize: function () {
-      var source = this.$('script').html();
-      this.template = Handlebars.compile(source);
-      this.$('script').remove();
+  var templates = {};
+  ns.Homepage = Backbone.View.extend({
+    events: {
+      'click .add-button': 'addButton_clickHandler'
+    },
+    initialize: function (options) {
+      this.$('script').parent().each(function (i) {
+        templates[this.id] = Handlebars.compile($(this).find('script').html());
+        this.innerHTML = '';
+      });
+      
+      this.collection = options.source.getWeek();
+      this.collection.on('change', this.collection_changeHandler, this);
+      this.model.on('change', this.model_changeHandler, this);
+      this.render();
+      this.createAddButton();
     },
     render: function () {
-      var data = this.model ? this.model.toJSON() : this.collection.toJSON();
-      this.$el.html(this.template(data));
+      this.renderSummary();
+      this.renderWeek();
+    },
+    createAddButton: function () {
+      this.addButton = this.$('.add-button').remove();
+      this.$('.today .level-0').first().append(this.addButton);
+    },
+    renderSummary: function () {
+      this.$('#summary').html(templates.summary(this.model.toJSON()));
+    },
+    renderWeek: function () {
+      var data = {weekdays: this.collection.toJSON()};
+      this.$('#detail').html(templates.detail(data));
+      this.$('#week').html(templates.week(data));
+    },
+    addButton_clickHandler: function (event) {
+      $('#select');
+    },
+    collection_changeHandler: function (model) {
+      this.renderWeek();
+    },
+    model_changeHandler: function (model) {
+      this.renderSummary();
     }
   });
-  ns.view = ns.view || {};
-  ns.view.Homepage = Backbone.View.extend({
-    detail: null,
-    week: null,
-    summary: null,
-    initialize: function () {
-      this.detail = new Item({
-        el: '#detail'
-      });
-      this.week = new Item({
-        el: '#week'
-      });
-      this.summary = new Item({
-        el: '#summary'
-      });
-    }
-  });
-})(GF)
+})(GF.view)
 

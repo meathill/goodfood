@@ -64,6 +64,17 @@
     100% { opacity: 0.8 }
   }
 </style>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36091301-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
  
 <div id="appLoadingIndicator">
   <div class="logo">
@@ -81,24 +92,29 @@
   <a class="button" href="#/about"><i class="icon-info">i</i></a>
 </header>
 <div class="content main hide">
+  <a class="round-button add-button" href="#/popup/select">+</a>
   <ul id="detail">
     <script type="text/html-template">
-      <li>
+      {{#each weekdays}}
+      <li class="{{#if today}}today{{/if}}">
         <ul class="single-day">
           <li class="header">
-            <span class="number">12.29</span><br />
-            <span class="hanzi">一</span></li>
-          <li></li>
-          <li></li>
-          <li></li>
+            <span class="number">{{date}}</span><br />
+            <span class="hanzi">{{day}}</span></li>
+          <li class="level level-{{b}}"></li>
+          <li class="level level-{{l}}"></li>
+          <li class="level level-{{m}}"></li>
         </ul>
       </li>
+      {{/each}}
     </script>
   </ul>
   <h2>当日评价</h2>
   <ul id="week">
     <script type="text/html-template">
-      <li class="level"></li>
+      {{#each weekdays}}
+      <li class="level level-{{level}}"></li>
+      {{/each}}
     </script>
   </ul>
   <h2><span class="pull-right">天</span>饮食总评价</h2>
@@ -125,7 +141,88 @@
     <p>荤素记帐是一款通过记录饮食情况，优化你的饮食结构，从而改善身材的应用。在这款应用中，“素”与“荤”不再单纯的是“菜”与“肉”的区别，而更像是两种饮食倾向，纯蔬菜的麻辣香锅，我们也算做荤菜，而像适量的白水煮鸡胸肉，我们算做是素菜。这款应用会给你一个标准，而实际进餐中是荤是素的决定权在你手里。</p>
     <p>我们不会建议你用极端的饮食结构达到减肥的目的。我们相信，只要你的饮食健康合理，吃的开心，身材自然会达到最好的状态。</p>
   </article>
+</div>
+
+<div id="popup-cover">
   
+</div>
+
+<div id="popup-cave">
+  <div class="popup hide" id="select">
+    <div class="popup-header">
+      <h3>请选择午餐</h3>
+    </div>
+    <div class="popup-body">
+      <ul class="levels">
+        <li><a href="#" class="level level-2">素</a></li>
+        <li><a href="#" class="level level-3">荤</a></li>
+        <li><a href="#" class="level level-1">大素</a></li>
+        <li><a href="#" class="level level-4">大荤</a></li>
+        <li><a href="#" class="level level-5">未食</a></li>
+      </ul>
+      <ul class="actions">
+        <li><a href="#/popup/intro" class="round-button">?</a><br />说明</li>
+        <li class="divider"></li>
+        <li><a href="#/popup/close" class="round-button">&times;</a><br />关闭</li>
+      </ul>
+    </div>
+  </div>
+  <div class="popup hide" id="intro">
+    <div class="popup-header">
+      <a href="#/popup/select" class="button back-button">返回</a>
+      <h3>说明</h3>
+    </div>
+    <div class="popup-body">
+      <ul>
+        <li class="active"><a href="#/intro2" class="level-2">素</a></li>
+        <li><a href="#/intro1" class="level-1">大素</a></li>
+        <li><a href="#/intro3" class="level-3">荤</a></li>
+        <li><a href="#/intro4" class="level-4">大荤</a></li>
+        <li><a href="#/intro5" class="level-5">未食</a></li>
+      </ul>
+      <ul>
+        <li class="active">
+          <article>
+            <h4>素食</h4>
+            <p>这里的素食概念，是指无论做法和食材都偏清淡，极少糖分和油腻。但又不缺少营养的正餐。</p>
+            <p>一餐中，肉类的含量不超过100克。且蔬菜的含量超过食物的50%，糖份少，非油炸，非保质期大于一个月的加工食品，非速食，含油少，就算是素食。</p>
+            <p>另外，鸡蛋清，小碗清鸡汤，白水煮鸡胸，清水加工的金枪鱼肉，只要不超过300克，也算做素食。</p>
+            <p>当日评价：一日3餐中只要有2餐是素或大素，当日的评价就为素。但如果连续6餐都是素或大素，最后一餐当日的评价直接为荤。</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h4>大素</h4>
+            <p>一餐中，蔬菜的含量超过食物的70%，且有一定量的绿色蔬菜，以杂粮为主食，肉类含量为0，无食鸡蛋黄，无糖分，非油炸，无油烹饪，或使用少量橄榄油，非零食，非保质期大于1个月的加工食品。</p>
+            <p>当日评价：一日3餐中只要有2餐是素或大素，当日的评价就为素。但如果连续6餐都是素或大素，最后一餐当日的评价直接为荤。</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h4>荤食</h4>
+            <p>这里的荤食概念，是指味道偏辛辣，且含丰富油腻或高糖分的食物。</p>
+            <p>一餐中，肉类的含量超过100克。或蔬菜的含量小于食物的50%，油炸或油多，糖份高，这一餐就算是荤食。</p>
+            <p>特别注意：含有植脂末（氢化植物油），阿斯巴甜的食物，餐馆中的纯蔬菜的麻辣香锅，沙拉酱，软饮料，啤酒，大于100g的红酒，50g的白酒，保质期大于1个月的加工食品，也都算做是荤食。</p>
+            <p>当日评价：一日3餐中只要有2餐是荤或大荤，当日的评价就为荤。但如果连续3餐都是荤，那么后面的3顿必须为素，否则最后一顿的当日评价直接为荤。</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h4>大荤</h4>
+            <p>大荤的标准，比较常见用于“甩开腮帮子吃”的情况，如聚餐，给自己的奖励等给自己带来极大的快感的进餐。</p>
+            <p>一餐中，肉类的含量超过400克，油炸，油多，有甜食和饮料，过度饮酒，都为大荤。</p>
+            <p>当日评价：大荤也同样适用于3餐2素，但是大荤之后的3顿必须为素，否则最后一顿的当日评价直接为荤。</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h4>未食</h4>
+            <p>空腹未进食，或吃的很少，几块饼干或一个水果，都算未食。评价相当于荤。</p>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <link rel="stylesheet" href="./css/ratchet.css" />
@@ -133,18 +230,12 @@
 <script src="libs/zepto.min.js"></script>
 <script src="libs/underscore-min.js"></script>
 <script src="libs/backbone-min.js"></script>
+<script src="libs/handlebars.js"></script>
 <script src="app/main.js"></script>
+<script src="app/utils/Utils.js"></script>
+<script src="app/model/Summary.js"></script>
+<script src="app/model/Record.js"></script>
 <script src="app/view/About.js"></script>
 <script src="app/view/Homepage.js"></script>
+<script src="app/view/PopupManager.js"></script>
 <script src="app/Router.js"></script>
-<script>
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36091301-3']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
