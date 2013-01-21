@@ -33,9 +33,9 @@
   }
   #appLoadingIndicator .logo {
     position: absolute;
-    top:50%;
+    top:135px;
     left: 50%;
-    margin: -197px 0 0 -220px;
+    margin-left:-110px;
   }
   #appLoadingIndicator .progress {
     position: absolute;
@@ -65,7 +65,8 @@
   }
 </style>
 <script>
-  var _gaq = _gaq || [];
+  var start = (new Date()).getTime(),
+      _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36091301-3']);
   _gaq.push(['_trackPageview']);
 
@@ -78,7 +79,7 @@
  
 <div id="appLoadingIndicator">
   <div class="logo">
-    <img src="./img/logo.gif" width="439" height="197" />
+    <img src="./img/logo.gif" width="220" height="98" />
   </div>
   <div class="progress">
     <div></div>
@@ -173,14 +174,14 @@
       <h3>说明</h3>
     </div>
     <div class="popup-body">
-      <ul>
-        <li class="active"><a href="#/intro2" class="level-2">素</a></li>
-        <li><a href="#/intro1" class="level-1">大素</a></li>
-        <li><a href="#/intro3" class="level-3">荤</a></li>
-        <li><a href="#/intro4" class="level-4">大荤</a></li>
-        <li><a href="#/intro5" class="level-5">未食</a></li>
+      <ul class="levels">
+        <li class="active"><a href="#/intro2" class="level level-2">素</a></li>
+        <li><a href="#/intro1" class="level level-1">大素</a></li>
+        <li><a href="#/intro3" class="level level-3">荤</a></li>
+        <li><a href="#/intro4" class="level level-4">大荤</a></li>
+        <li><a href="#/intro5" class="level level-5">未食</a></li>
       </ul>
-      <ul>
+      <ul class="intros">
         <li class="active">
           <article>
             <h4>素食</h4>
@@ -237,5 +238,7 @@
 <script src="app/model/Record.js"></script>
 <script src="app/view/About.js"></script>
 <script src="app/view/Homepage.js"></script>
-<script src="app/view/PopupManager.js"></script>
+<script src="app/popup/PopupManager.js"></script>
+<script src="app/popup/Intro.js"></script>
+<script src="app/popup/Select.js"></script>
 <script src="app/Router.js"></script>

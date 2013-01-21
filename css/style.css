@@ -13,6 +13,9 @@ body,
 .content {
   background:#E8E8E8;
 }
+li {
+  list-style:none;
+}
 .hide {
   display:none;
 }
@@ -26,9 +29,13 @@ body,
   font:bold 30px/34px Airal Black;
   color:#FFF;
 }
+
+/* ====================================
+ * 覆盖全局
+ * ==================================== */
 article {
   line-height:22px;
-  padding:20px;
+  padding:10px;
 }
 article p {
   text-indent: 28px;
@@ -36,6 +43,15 @@ article p {
 }
 article p:last-child {
   margin-bottom: 0;
+}
+.level-1,
+.level-2 {
+  background-color: #64C205;
+}
+.level-3,
+.level-4,
+.level-5 {
+  background-color:#DF7806;
 }
 
 /* ====================================
@@ -69,7 +85,6 @@ article p:last-child {
 }
 .main li {
   float:left;
-  list-style: none;
 }
 /* --------------------------
  * 周列表
@@ -104,15 +119,6 @@ article p:last-child {
   background-position-x: center center;
   background-repeat: no-repeat;
   background-size: 31px auto;
-}
-#detail .level-1,
-#detail .level-2 {
-  background-color: #64C205;
-}
-#detail .level-3,
-#detail .level-4,
-#detail .level-5 {
-  background-color:#DF7806;
 }
 #detail .level-1 {
   background-image:url(../img/level-1.png);
@@ -224,19 +230,37 @@ article p:last-child {
 }
 .popup-body {
   border-top: 1px solid #F9F9F9;
-  
+}
+#select .level-1,
+#intro .level-1 {
+  background-image: url(../img/level-1s.png);
+}
+#select .level-2,
+#intro .level-2 {
+  background-image: url(../img/level-2s.png);
+}
+#select .level-3,
+#intro .level-3 {
+  background-image: url(../img/level-3s.png);
+}
+#select .level-4,
+#intro .level-4 {
+  background-image: url(../img/level-4s.png);
+}
+#select .level-5,
+#intro .level-5 {
+  background-image: url(../img/level-5s.png);
 }
 /* --------------------------
  * 选择荤素
  * -------------------------- */
-.levels {
+#select .levels {
   padding:5px 0 0 5px;
   border-bottom: 1px solid #DFDFDF;
   overflow: hidden;
 }
-.levels li {
+#select .levels li {
   float:left;
-  list-style: none;
 }
 #select .level {
   background-position: center center;
@@ -245,15 +269,6 @@ article p:last-child {
   display:block;
   text-indent: -9999px;
   margin:0 5px 5px 0
-}
-#select .level-1,
-#select .level-2 {
-  background-color:#64C205;
-}
-#select .level-3,
-#select .level-4,
-#select .level-5 {
-  background-color: #DF7806;
 }
 #select .level-2,
 #select .level-3 {
@@ -268,28 +283,16 @@ article p:last-child {
 }
 #select .level-1 {
   width:130px;
-  background-image: url(../img/level-1s.png);
 }
-#select .level-2 {
-  background-image: url(../img/level-2s.png);
-}
-#select .level-3 {
-  margin-right: 0;
-  background-image: url(../img/level-3s.png);
-}
-#select .level-4 {
-  background-image: url(../img/level-4s.png);
-}
+#select .level-3,
 #select .level-5 {
-  margin-right:0;
-  background-image: url(../img/level-5s.png);
+  margin-right: 0;
 }
 .actions {
   border-top: 1px solid #F9F9F9;
   overflow: hidden;
 }
 .actions li {
-  list-style: none;
   float:left;
   width:136px;
   height:90px;
@@ -312,4 +315,38 @@ article p:last-child {
   position:absolute;
   left: 7px;
   top:4px;
+}
+#intro .levels {
+  padding:5px 5px 0;
+  overflow: hidden;
+}
+#intro .levels li {
+  float:left;
+  margin-right: 5px;
+  padding:0 0 5px;
+}
+#intro .levels .active {
+  
+}
+#intro .levels li:last-child {
+  margin-right:0;
+}
+#intro .level {
+  width:49px;
+  height:60px;
+  display:block;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 34px auto;
+  text-indent:-9999px;
+}
+.intros {
+  height:200px;
+  overflow-y: auto;
+}
+.intros li {
+  display:none;
+}
+.intros .active {
+  display:block;
 }
