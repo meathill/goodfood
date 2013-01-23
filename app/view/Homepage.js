@@ -3,7 +3,7 @@
   var templates = {};
   ns.Homepage = Backbone.View.extend({
     events: {
-      'click .add-button': 'addButton_clickHandler'
+      'tap .add-button': 'addButton_tapHandler'
     },
     initialize: function (options) {
       this.$('script').parent().each(function (i) {
@@ -33,8 +33,10 @@
       this.$('#detail').html(templates.detail(data));
       this.$('#week').html(templates.week(data));
     },
-    addButton_clickHandler: function (event) {
-      $('#select');
+    addButton_tapHandler: function (event) {
+      var day = this.$('.today').index(),
+          index = this.$('.today .level-0').index();
+      GF.popup.Manager.showSelectPopup(this.collection.at(day), index);
     },
     collection_changeHandler: function (model) {
       this.renderWeek();

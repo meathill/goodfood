@@ -105,7 +105,7 @@ article p:last-child {
   padding:5px 0 10px;
   color:#CCC;
 }
-.today .single-day li.header {
+.today li.header {
   background: #2F2F2F;
   color:#FFF;
 }

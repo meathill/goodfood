@@ -2,47 +2,58 @@
   var curr = '',
       intro,
       select;
-  ns.PopupManager = {
+  ns.Manager = {
     close: function () {
       if (curr) {
-        $('#' + curr).hide();
-        curr = '';
+        curr
+          .hide()
+          .trigger('hide');
       }
       $('#popup-cover').hide();
       
-      $(document).off('click', '#popup-cover');
-    },
-    createHandler: function (popup) {
-      switch(popup) {
-        case 'intro':
-          intro = new GF.popup.Intro({
-            el: '#' + popup
-          });
-          break;
-          
-        case 'select':
-          select = new GF.popup.Select({
-            el: '#' + popup
-          });
-          break;
-      }
+      $(document).off('tap', '#popup-cover');
     },
     popup: function (popup) {
+      popup = _.isString(popup) ? $('#' + popup) : popup;
       if (curr) {
-        if (popup === curr) {
+        if (popup.is(curr)) {
           return;
         }
-        $('#' + curr).hide();
+        curr.hide();
       }
-      curr = popup;
       $('#popup-cover').show();
-      $('#' + popup).show();
-      this.createHandler(popup);
+      curr = popup;
+      curr
+        .show()
+        .trigger('show');
       
-      $(document).on('click', '#popup-cover', _.bind(this.cover_clickHandler, this));
+      $(document).on('tap', '#popup-cover', _.bind(this.cover_clickHandler, this));
+    },
+    showSelectPopup: function (model, index) {
+      this.popup('select');
+      select.model = model;
+      select.index = index;
     },
     cover_clickHandler: function (event) {
       this.close();
     }
   }
+
+  $(document).on('show', '.popup', function (event) {
+    switch(event.currentTarget.id) {
+      case 'intro':
+        intro = intro || new GF.popup.Intro({
+          el: '#' + event.currentTarget.id
+        });
+        intro.manager = ns.Manager;
+        break;
+
+      case 'select':
+        select = select || new GF.popup.Select({
+          el: '#' + event.currentTarget.id
+        });
+        select.manager = ns.Manager;
+        break;
+    }
+  });
 })(GF.popup)

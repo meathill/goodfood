@@ -97,14 +97,14 @@
   <ul id="detail">
     <script type="text/html-template">
       {{#each weekdays}}
-      <li class="{{#if today}}today{{/if}}">
-        <ul class="single-day">
+      <li class="single-day {{#if today}}today{{/if}}">
+        <ul>
           <li class="header">
             <span class="number">{{date}}</span><br />
             <span class="hanzi">{{day}}</span></li>
-          <li class="level level-{{b}}"></li>
-          <li class="level level-{{l}}"></li>
-          <li class="level level-{{m}}"></li>
+          <li class="level level-{{f1}}"></li>
+          <li class="level level-{{f2}}"></li>
+          <li class="level level-{{f3}}"></li>
         </ul>
       </li>
       {{/each}}

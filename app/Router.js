@@ -13,10 +13,10 @@
     },
     showPopup: function (popup) {
       if (popup === 'close') {
-        GF.popup.PopupManager.close();
+        GF.popup.Manager.close();
         return;
       }
-      GF.popup.PopupManager.popup(popup);
+      GF.popup.Manager.popup(popup);
     }
   });
 })(GF);

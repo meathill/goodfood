@@ -2,11 +2,10 @@
   'use strict';
   var today = new Date(),
       Model = Backbone.Model.extend({
-        idAttribute: 'date',
         defaults: {
-          b: 0, // 早餐breakfast
-          l: 0, // 午餐lunch
-          m: 0, // 晚餐meal
+          f1: 0, // 早餐breakfast
+          f2: 0, // 午餐lunch
+          f3: 0, // 晚餐meal
           level: 0, // 三餐平均
           date: 0, // 月.日
           day: 0 // 周几
