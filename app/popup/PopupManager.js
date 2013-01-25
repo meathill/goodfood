@@ -16,7 +16,7 @@
     popup: function (popup) {
       popup = _.isString(popup) ? $('#' + popup) : popup;
       if (curr) {
-        if (popup.is(curr)) {
+        if (popup[0] === curr[0]) {
           return;
         }
         curr.hide();

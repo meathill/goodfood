@@ -44,11 +44,16 @@
       }
       return this.currentWeek;
     },
+    save: function () {
+      localStorage.setItem('days', JSON.stringify(this.toJSON()));
+    },
     week_changeHandler: function (model) {
       if (this.indexOf(model) !== -1) {
+        this.save();
         return;
       }
       this.add(model);
+      this.save();
     }
   });
 })(GF.model);
