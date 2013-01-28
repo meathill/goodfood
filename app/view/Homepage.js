@@ -12,7 +12,8 @@
       });
       
       this.collection = options.source.getWeek();
-      this.collection.on('change', this.collection_changeHandler, this);
+      this.collection.on('change:f1 change:f2 change:f3', this.collection_changeHandler, this);
+      this.collection.on('change:level', this.collectionLevel_changeHandler, this);
       this.model.on('change', this.model_changeHandler, this);
       this.render();
       this.createAddButton();
@@ -28,10 +29,13 @@
     renderSummary: function () {
       this.$('#summary').html(templates.summary(this.model.toJSON()));
     },
-    renderWeek: function () {
-      var data = {weekdays: this.collection.toJSON()};
-      this.$('#detail').html(templates.detail(data));
-      this.$('#week').html(templates.week(data));
+    renderFood: function (model, value) {
+      var data = {weekdays: model.toJSON()};
+      this.$('#detail').children().eq(this.collection.indexOf(model)).replaceWith(templates.detail(data));
+    },
+    renderDays: function (model, value) {
+      var data = {level: value};
+      this.$('#week').children().eq(this.collection.indexOf(model)).replaceWith(templates.week(data));
     },
     addButton_tapHandler: function (event) {
       var day = this.$('.today').index(),
