@@ -28,7 +28,8 @@
     checkDays: function (model, value) {
       // 因为要计算6餐饭的影响，所以只需要查前两天和后两天即可
       var date = new Date(model.id),
-          days = [];
+          days = [],
+          foods = [];
       for (var i = 1; i < 3; i++) {
         var thisModel = this.get(GF.utils.formatDate(GF.utils.calculateDate(date, i), 'yyyy-mm-dd'));
         if (thisModel) {
@@ -37,34 +38,42 @@
           break;
         }
       }
-      if (nextModel) {
-        foods = foods.concat(this.getFoodsByDay(nextModel));
-        days.push(nextModel);
-        nnextModel = this.get(GF.utils.formatDate(GF.utils.calculateDate(date, 2), 'yyyy-mm-dd'));
-        if (nnextModel) {
-          foods = foods.concat(this.getFoodsByDay(nnextModel));
-          days.push(nnextModel);
+      for (var i = -1; i > -3; i--) {
+        var thisModel = this.get(GF.utils.formatDate(GF.utils.calculateDate(date, i), 'yyyy-mm-dd'));
+        if (thisModel) {
+          days.unshift(thisModel);
+        } else {
+          break;
         }
       }
-      if (prevModel) {
-        foods = this.getFoodsByDay(prevModel).concat(foods);
-        days.unshift(nextModel);
-        pprevModel = this.get(GF.utils.formatDate(GF.utils.calculateDate(date, -2), 'yyyy-mm-dd'));
-        if (pprevModel) {
-          foods = this.getFoodsByDay(pprevModel).concat(foods);
-          days.unshift(pprevModel);
-        }
+      for (var i = 0, len = days.length; i < len; i++) {
+        foods = foods.concat(this.getFoodsByDay(days[i]));
       }
-      var count = vcount = 0,
+      var count = vcount = 0, // 连续肉或素
+          is3meat = false;
           last = foods[0] > 2;
-      for (var i = 1, len = foods.length; i < len; i++) {
+      for (var i = 0, len = foods.length; i < len; i++) {
+        // 肉还是素
         var curr = foods[i] > 2;
-        if (curr === last) {
+        if (curr === last) { // 跟上次一样，连续数+1
           (curr ? count : vcount) += 1;
+        } else { // 不一样，清零
+          count = vcount = 0;
+          (curr ? count : vcount) = 1;
         }
+        last = curr;
         if (curr) {
+          if (is3meat) {
+            is3meat = false;
+            days[i / 3 >> 0].set('level', 2);
+          }
+          is3meat = count >= 3;
+        } else {
+          if (vcount >= 3) {
+            is3meat = false;
+          }
           if (vcount >= 6) {
-            
+            days[i / 3 >> 0].set('level', 2);
           }
         }
       }

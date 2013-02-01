@@ -19,8 +19,11 @@
       this.createAddButton();
     },
     render: function () {
-      this.renderSummary();
-      this.renderWeek();
+      this.$('#summary').html(templates.summary(this.model.toJSON()));
+      
+      var foods = {weekdays: this.collection.toJSON()};
+      this.$('#detail').html(templates.detail(foods));
+      this.$('#week').html(templates.week(foods));
     },
     createAddButton: function () {
       this.addButton = this.$('.add-button').remove();
