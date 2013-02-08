@@ -45,8 +45,11 @@
           index = this.$('.today .level-0').index();
       GF.popup.Manager.showSelectPopup(this.collection.at(day), index);
     },
-    collection_changeHandler: function (model) {
-      this.renderWeek();
+    collectionFood_changeHandler: function (model) {
+      this.renderFood(model);
+    },
+    collectionLevel_changeHandler: function (model) {
+      this.renderDays(model);
     },
     model_changeHandler: function (model) {
       this.renderSummary();
