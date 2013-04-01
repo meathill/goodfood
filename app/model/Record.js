@@ -95,7 +95,7 @@
       this.currentWeek.reset();
       var day = today.getDay();
       for (var i = 0; i < 7; i++) {
-        var date = GF.utils.calculateDate(today, day - offset * 7 - i),
+        var date = GF.utils.calculateDate(today, offset * 7 + i - day),
             cid = GF.utils.formatDate(date, 'yyyy-mm-dd'),
             model = this.get(cid) ? this.get(cid) : new Model({
               id: cid,
@@ -113,16 +113,17 @@
       localStorage.setItem('days', JSON.stringify(this.toJSON()));
     },
     week_changeHandler: function (model, value) {
-      var level = model.get('f1') + model.get('f2') + model.get('f3');
-      level = level < 7 ? 1 : 2; // 当日评价
-      this.checkDays(model, value); // 检查连续6餐素或连续3餐荤
-      model.set('level', level);
-      if (this.indexOf(model) !== -1) {
-        this.save();
+      if (this.indexOf(model) === -1) {
+        this.add(model);
+      }
+      this.save();
+      if (model.get('f1') === 0 || model.get('f2') === 0 || model.get('f3') === 0) {
         return;
       }
-      this.add(model);
-      this.save();
+      var level = model.get('f1') + model.get('f2') + model.get('f3');
+      level = level < 7 ? 1 : 2; // 当日评价
+      model.set('level', level);
+      this.checkDays(model, value); // 检查连续6餐素或连续3餐荤
     }
   });
 })(GF.model);

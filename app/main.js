@@ -7,15 +7,28 @@ $(function () {
       root: '/goodfood/'
     });
   }
-  R.record = new GF.model.Record();
-  R.summary = new GF.model.Summary();
+  var record = new GF.model.Record(),
+      summary = new GF.model.Summary();
+  record.on('change:level', function (model, value) {
+    var target = value === 1 ? 'vege' : 'meat';
+    if (model.previous === 0) {
+      summary.set('days', summary.get('days') + 1);
+      summary.set(target, summary.get(target) + 1);
+    } else {
+      var old = value === 1 ? 'meat' : 'vege';
+      summary.set(target, summary.get(target) + 1);
+      summary.set(old, summary.get(old) - 1);
+    }
+  });
+  R.record = record;
+  R.summary = summary;
   R.about = new GF.view.About({
     el: '.about'
   });
   R.homepage = new GF.view.Homepage({
     el: '.main',
-    source: R.record,
-    model: R.summary
+    source: record,
+    model: summary
   });
   R.router = new GF.Router();
 
