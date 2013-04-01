@@ -49,17 +49,26 @@
       for (var i = 0, len = days.length; i < len; i++) {
         foods = foods.concat(this.getFoodsByDay(days[i]));
       }
-      var count = vcount = 0, // 连续肉或素
-          is3meat = false;
+      var count = 0,
+          vcount = 0, // 连续肉或素
+          is3meat = false,
           last = foods[0] > 2;
       for (var i = 0, len = foods.length; i < len; i++) {
         // 肉还是素
         var curr = foods[i] > 2;
         if (curr === last) { // 跟上次一样，连续数+1
-          (curr ? count : vcount) += 1;
+          if (curr) {
+            count += 1;
+          } else {
+            vcount += 1;
+          }
         } else { // 不一样，清零
           count = vcount = 0;
-          (curr ? count : vcount) = 1;
+          if (curr) {
+            count = 1;
+          } else {
+            vcount = 1;
+          }
         }
         last = curr;
         if (curr) {
@@ -91,7 +100,7 @@
             model = this.get(cid) ? this.get(cid) : new Model({
               id: cid,
               date: GF.utils.formatDate(date, 'mm.dd'),
-              day: GF.utils.WEEKDAYS[i],
+              day: GF.utils.WEEKDAYS[i]
             });
         if (offset === 0 && day === i) {
           model.set('today', true);

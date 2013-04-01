@@ -6,7 +6,7 @@
       percent: 0,
       height: 0,
       level: '',
-      leveldesc: '未知',
+      leveldesc: '未知'
     },
     initialize: function () {
       var storage = localStorage.getItem('summary');
@@ -17,5 +17,5 @@
       this.set(JSON.parse(storage));
     }
   });
-})(GF.model)
+})(GF.model);
 

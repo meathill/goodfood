@@ -8,7 +8,7 @@
     initialize: function (options) {
       this.$('script').parent().each(function (i) {
         templates[this.id] = Handlebars.compile($(this).find('script').html());
-        this.innerHTML = '';
+        this.el.innerHTML = '';
       });
       
       this.collection = options.source.getWeek();
