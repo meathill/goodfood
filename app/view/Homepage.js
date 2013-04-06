@@ -8,11 +8,11 @@
     initialize: function (options) {
       this.$('script').parent().each(function (i) {
         templates[this.id] = Handlebars.compile($(this).find('script').html());
-        this.el.innerHTML = '';
+        this.innerHTML = '';
       });
       
       this.collection = options.source.getWeek();
-      this.collection.on('change:f1 change:f2 change:f3', this.collection_changeHandler, this);
+      this.collection.on('change:f1 change:f2 change:f3', this.collectionFood_changeHandler, this);
       this.collection.on('change:level', this.collectionLevel_changeHandler, this);
       this.model.on('change', this.model_changeHandler, this);
       this.render();
@@ -55,5 +55,5 @@
       this.renderSummary();
     }
   });
-})(GF.view)
+})(GF.view);
 

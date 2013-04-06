@@ -1,5 +1,5 @@
-'use strict';
 $(function () {
+  'use strict';
   function init() {
     $('#appLoadingIndicator').remove();
     $('.main').removeClass('hide');
@@ -11,7 +11,7 @@ $(function () {
       summary = new GF.model.Summary();
   record.on('change:level', function (model, value) {
     var target = value === 1 ? 'vege' : 'meat';
-    if (model.previous === 0) {
+    if (model.previous('level') === 0) {
       summary.set('days', summary.get('days') + 1);
       summary.set(target, summary.get(target) + 1);
     } else {
