@@ -10,12 +10,12 @@ $(function () {
   var record = new GF.model.Record(),
       summary = new GF.model.Summary();
   record.on('change:level', function (model, value) {
-    var target = value === 1 ? 'vege' : 'meat';
+    var target = value === 2 ? 'vege' : 'meat';
     if (model.previous('level') === 0) {
       summary.set('days', summary.get('days') + 1);
       summary.set(target, summary.get(target) + 1);
     } else {
-      var old = value === 1 ? 'meat' : 'vege';
+      var old = value === 2 ? 'meat' : 'vege';
       summary.set(target, summary.get(target) + 1);
       summary.set(old, summary.get(old) - 1);
     }

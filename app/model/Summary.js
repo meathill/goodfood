@@ -7,7 +7,7 @@
       level: '',
       desc: '未知',
       meat: 0,
-      vege: 0,
+      vege: 0
     },
     initialize: function () {
       var storage = localStorage.getItem('summary');
@@ -45,13 +45,17 @@
         return '不健康';
       }
     },
+    save: function () {
+      localStorage.setItem('summary', JSON.stringify(this.toJSON()));
+    },
     changeHandler: function (model, value) {
       var percent = Math.round(this.get('vege') / this.get('days') * 100);
       this.set({
         percent: percent,
         level: this.getLevel(percent),
-        desc: this.getDesc(percent),
+        desc: this.getDesc(percent)
       });
+      this.save();
     }
   });
 })(GF.model);

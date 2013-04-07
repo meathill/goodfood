@@ -26,18 +26,19 @@
       this.$('#week').html(templates.week(foods));
     },
     createAddButton: function () {
-      this.addButton = this.$('.add-button').remove();
+      this.addButton = this.addButton || this.$('.add-button').remove();
       this.$('.today .level-0').first().append(this.addButton);
     },
     renderSummary: function () {
       this.$('#summary').html(templates.summary(this.model.toJSON()));
     },
-    renderFood: function (model, value) {
-      var data = {weekdays: model.toJSON()};
+    renderFood: function (model) {
+      var data = {weekdays: [model.toJSON()]};
       this.$('#detail').children().eq(this.collection.indexOf(model)).replaceWith(templates.detail(data));
+      this.createAddButton();
     },
     renderDays: function (model, value) {
-      var data = {level: value};
+      var data = {weekdays: [{level: value}]};
       this.$('#week').children().eq(this.collection.indexOf(model)).replaceWith(templates.week(data));
     },
     addButton_tapHandler: function (event) {
@@ -45,11 +46,11 @@
           index = this.$('.today .level-0').index();
       GF.popup.Manager.showSelectPopup(this.collection.at(day), index);
     },
-    collectionFood_changeHandler: function (model) {
+    collectionFood_changeHandler: function (model, value) {
       this.renderFood(model);
     },
-    collectionLevel_changeHandler: function (model) {
-      this.renderDays(model);
+    collectionLevel_changeHandler: function (model, level) {
+      this.renderDays(model, level);
     },
     model_changeHandler: function (model) {
       this.renderSummary();

@@ -8,6 +8,7 @@
         curr
           .hide()
           .trigger('hide');
+        curr = null;
       }
       $('#popup-cover').hide();
       

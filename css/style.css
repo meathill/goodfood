@@ -26,7 +26,7 @@ li {
   border:none;
   padding:0;
   background:-webkit-linear-gradient(top, #898989, #000);
-  font:bold 30px/34px Airal Black;
+  font:bold 30px/34px "Airal Black";
   color:#FFF;
 }
 
@@ -114,18 +114,21 @@ article p:last-child {
 .hanzi {
   line-height:30px; 
 }
-#detail li.level{
-  background-position-x: center center;
+#detail li.level,
+#week li.level {
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: 31px auto;
 }
 #detail .level-1 {
   background-image:url(../img/level-1.png);
 }
-#detail .level-2 {
+#detail .level-2
+#week .level-2 {
   background-image:url(../img/level-2.png);
 }
-#detail .level-3 {
+#detail .level-3,
+#week .level-3 {
   background-image:url(../img/level-3.png);
 }
 #detail .level-4 {

@@ -121,7 +121,7 @@
         return;
       }
       var level = model.get('f1') + model.get('f2') + model.get('f3');
-      level = level < 7 ? 1 : 2; // 当日评价
+      level = level < 7 ? 2 : 3; // 当日评价
       model.set('level', level);
       this.checkDays(model, value); // 检查连续6餐素或连续3餐荤
     }
