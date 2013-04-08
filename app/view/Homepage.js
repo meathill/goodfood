@@ -19,7 +19,7 @@
       this.createAddButton();
     },
     render: function () {
-      this.$('#summary').html(templates.summary(this.model.toJSON()));
+      this.renderSummary();
       
       var foods = {weekdays: this.collection.toJSON()};
       this.$('#detail').html(templates.detail(foods));
@@ -30,6 +30,7 @@
       this.$('.today .level-0').first().append(this.addButton);
     },
     renderSummary: function () {
+      this.$('h2 .days').html(this.model.get('days') + ' 天');
       this.$('#summary').html(templates.summary(this.model.toJSON()));
     },
     renderFood: function (model) {

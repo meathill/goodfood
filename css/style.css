@@ -29,6 +29,9 @@ li {
   font:bold 30px/34px "Airal Black";
   color:#FFF;
 }
+.pull-right {
+  float: right;
+}
 
 /* ====================================
  * 覆盖全局
@@ -123,7 +126,7 @@ article p:last-child {
 #detail .level-1 {
   background-image:url(../img/level-1.png);
 }
-#detail .level-2
+#detail .level-2,
 #week .level-2 {
   background-image:url(../img/level-2.png);
 }
@@ -165,13 +168,13 @@ article p:last-child {
   display:inline-block;
   width:27px;
   height:46px;
-  background:url(../img/doll.png) no-repeat;
+  background:url(../img/doll.png) no-repeat -27px 0;
   background-size: 54px 46px;
   vertical-align: middle;
 }
 #summary .doll-inner {
-  background-position-x: -27px;
   vertical-align: top;
+  background-position: 0 0;
 }
 #summary strong {
   font-size:22px;

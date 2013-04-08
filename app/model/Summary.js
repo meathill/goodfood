@@ -10,14 +10,13 @@
       vege: 0
     },
     initialize: function () {
+      this.on('change:meat change:vege', this.changeHandler, this);
+
       var storage = localStorage.getItem('summary');
-      
       if (!storage) {
         return;
       }
       this.set(JSON.parse(storage));
-      
-      this.on('change:meat change:vege', this.changeHandler, this);
     },
     getLevel: function (percent) {
       if (percent < 40) {
