@@ -110,7 +110,10 @@
       return this.currentWeek;
     },
     save: function () {
-      localStorage.setItem('days', JSON.stringify(this.toJSON()));
+      var data = this.map(function (model) {
+        return _.omit(model.attributes, 'today');
+      });
+      localStorage.setItem('days', JSON.stringify(data));
     },
     week_changeHandler: function (model, value) {
       if (this.indexOf(model) === -1) {
