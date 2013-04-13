@@ -4,11 +4,14 @@
     events: {
       'click .close-button': 'closeButton_clickHandler'
     },
+    hide: function () {
+      this.$el.addClass('hide');
+    },
     show: function () {
       this.$el.removeClass('hide');
     },
     closeButton_clickHandler: function (event) {
-      this.$el.addClass('hide');
+      this.hide();
     }
   });
 })(GF.view);

@@ -1,14 +1,10 @@
 $(function () {
+  document.addEventListener('deviceready', onDeviceReady, false);
+});
+function onDeviceReady() {
   'use strict';
-  function init() {
-    $('#appLoadingIndicator').remove();
-    $('.main').removeClass('hide');
-    Backbone.history.start({
-      root: '/goodfood/'
-    });
-  }
   var record = new GF.model.Record(),
-      summary = new GF.model.Summary();
+    summary = new GF.model.Summary();
   record.on('change:level', function (model, value) {
     var target = value === 2 ? 'vege' : 'meat';
     if (model.previous('level') === 0) {
@@ -32,14 +28,22 @@ $(function () {
   });
   R.router = new GF.Router();
 
-  var curr = (new Date()).getTime();
-  if (curr - start > 1000) {
-    init();
-    return;
-  } 
-  setTimeout(init, 1000);
-});
+  $('#appLoadingIndicator').remove();
+  $('.main').removeClass('hide');
+  Backbone.history.start({
+    root: '/goodfood/'
+  });
+
+  document.addEventListener('backbutton', function () {
+    if (location.hash === '#/about') {
+      R.router.navigate('#/homepage');
+    } else {
+      navigator.app.exitApp();
+    }
+  }, false);
+}
 var GF = { // namespace
+      file: {},
       model: {},
       view: {},
       utils: {},

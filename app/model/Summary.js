@@ -12,7 +12,7 @@
     initialize: function () {
       this.on('change:meat change:vege', this.changeHandler, this);
 
-      var storage = localStorage.getItem('summary');
+      var storage = window.localStorage.getItem('summary');
       if (!storage) {
         return;
       }
@@ -45,7 +45,7 @@
       }
     },
     save: function () {
-      localStorage.setItem('summary', JSON.stringify(this.toJSON()));
+      window.localStorage.setItem('summary', JSON.stringify(this.toJSON()));
     },
     changeHandler: function (model, value) {
       var percent = Math.round(this.get('vege') / this.get('days') * 100);

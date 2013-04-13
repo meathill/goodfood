@@ -7,10 +7,14 @@
   ns.Router = Backbone.Router.extend({
     routes: {
       'about': 'showAbout',
+      'homepage': 'showHomepage',
       'popup/:popup': 'showPopup'
     },
     showAbout: function () {
       R.about.show();
+    },
+    showHomepage: function () {
+      R.about.hide();
     },
     showPopup: function (popup) {
       if (popup === 'close') {

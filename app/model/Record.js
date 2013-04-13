@@ -16,7 +16,8 @@
     currentWeek: null,
     model: Model,
     initialize: function () {
-      var storage = localStorage.getItem('days');
+      var storage = window.localStorage.getItem('days');
+      console.log(storage);
       this.currentWeek = new Backbone.Collection();
       this.currentWeek.on('change', this.week_changeHandler, this);
       
@@ -113,7 +114,8 @@
       var data = this.map(function (model) {
         return _.omit(model.attributes, 'today');
       });
-      localStorage.setItem('days', JSON.stringify(data));
+      window.localStorage.setItem('days', JSON.stringify(data));
+      console.log(window.localStorage.getItem('days'));
     },
     week_changeHandler: function (model, value) {
       if (this.indexOf(model) === -1) {
