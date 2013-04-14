@@ -14,14 +14,14 @@
       this.collection = options.source.getWeek();
       this.collection.on('change:f1 change:f2 change:f3', this.collectionFood_changeHandler, this);
       this.collection.on('change:level', this.collectionLevel_changeHandler, this);
-      this.collection.on('reset', this.render, this);
+      this.collection.on('reset', this.collection_resetHandler, this);
       this.model.on('change', this.model_changeHandler, this);
 
       this.render();
     },
     render: function () {
       this.renderSummary();
-      
+
       var foods = {weekdays: this.collection.toJSON()};
       this.$('#detail').html(templates.detail(foods));
       this.$('#week').html(templates.week(foods));
@@ -48,6 +48,9 @@
       var day = this.$('.today').index(),
           index = this.$('.today .level-0').index();
       GF.popup.Manager.showSelectPopup(this.collection.at(day), index);
+    },
+    collection_resetHandler: function () {
+      this.render();
     },
     collectionFood_changeHandler: function (model, value) {
       this.renderFood(model);

@@ -10,13 +10,14 @@
     fs = fileSystem;
     manager.trigger('init');
   }
-  function onError(event) {
-    console.log('file system error: ' + event.target.error.code);
+  function onError(error) {
+    console.log('file system error: ');
+    console.log(error);
   }
   var fs,
   manager = {
     init: function () {
-      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onError);
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 1024 * 1024, onFileSystemSuccess, onError);
     },
     load: function (filename, success, fail) {
       fs.root.getFile(filename, {create: false}, function (fileEntry) {
@@ -34,7 +35,7 @@
       fs.root.getFile(filename, {create: true, exclusive: false}, function (fileEntry) {
         fileEntry.createWriter(function (writer) {
           writer.onwriteend = function () {
-            success();
+            console.log('write over');
           }
           writer.write(content);
         }, onError);

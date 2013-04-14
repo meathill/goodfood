@@ -36,8 +36,8 @@ function onDeviceReady() {
     }
   }, false);
 
-  GF.file.Manager.init();
   GF.file.Manager.on('init', function () {
+    console.log('app start');
     record.fetch();
     summary.fetch();
 
@@ -47,6 +47,7 @@ function onDeviceReady() {
       root: '/goodfood/'
     });
   });
+  GF.file.Manager.init();
 }
 var GF = { // namespace
       file: {},
