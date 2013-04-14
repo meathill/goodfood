@@ -100,6 +100,9 @@ article p:last-child {
   box-shadow: inset 1px 0 1px rgba(255, 255, 255, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.6), inset -1px 0 1px rgba(0, 0, 0, 0.6), inset 0 -1px 1px rgba(0, 0, 0, 0.6);
   position: relative;
 }
+.single-day li.active {
+  box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.4);
+}
 .single-day li.header {
   height:auto;
   background:#505050;

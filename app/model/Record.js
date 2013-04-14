@@ -1,6 +1,7 @@
 ;(function (ns) {
   'use strict';
-  var today = new Date(),
+  var STORAGE = 'days.json',
+      today = new Date(),
       Model = Backbone.Model.extend({
         defaults: {
           f1: 0, // 早餐breakfast
@@ -16,15 +17,8 @@
     currentWeek: null,
     model: Model,
     initialize: function () {
-      var storage = window.localStorage.getItem('days');
-      console.log(storage);
       this.currentWeek = new Backbone.Collection();
       this.currentWeek.on('change', this.week_changeHandler, this);
-      
-      if (!storage) {
-        return;
-      }
-      this.reset(JSON.parse(storage));
     },
     checkDays: function (model, value) {
       // 因为要计算6餐饭的影响，所以只需要查前两天和后两天即可
@@ -88,6 +82,12 @@
         }
       }
     },
+    fetch: function () {
+      var self = this;
+      GF.file.Manager.load(STORAGE, function (storage) {
+        self.reset(JSON.parse(storage));
+      });
+    },
     getFoodsByDay: function (model) {
       return _.values(_.pick(model, 'f1', 'f2', 'f3'));
     },
@@ -114,8 +114,7 @@
       var data = this.map(function (model) {
         return _.omit(model.attributes, 'today');
       });
-      window.localStorage.setItem('days', JSON.stringify(data));
-      console.log(window.localStorage.getItem('days'));
+      GF.file.Manager.save(STORAGE, JSON.stringify(data));
     },
     week_changeHandler: function (model, value) {
       if (this.indexOf(model) === -1) {

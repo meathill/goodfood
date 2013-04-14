@@ -1,5 +1,6 @@
 ;(function (ns) {
   'use strict';
+  var STORAGE = 'summary.json';
   ns.Summary = Backbone.Model.extend({
     defaults: {
       days: 0,
@@ -11,12 +12,11 @@
     },
     initialize: function () {
       this.on('change:meat change:vege', this.changeHandler, this);
-
-      var storage = window.localStorage.getItem('summary');
-      if (!storage) {
-        return;
-      }
-      this.set(JSON.parse(storage));
+    },
+    fetch: function () {
+      GF.file.Manager.load(STORAGE, function (storage) {
+        this.set(JSON.parse(storage));
+      });
     },
     getLevel: function (percent) {
       if (percent < 40) {
@@ -45,7 +45,7 @@
       }
     },
     save: function () {
-      window.localStorage.setItem('summary', JSON.stringify(this.toJSON()));
+      GF.file.Manager.save(STORAGE, JSON.stringify(this.toJSON()));
     },
     changeHandler: function (model, value) {
       var percent = Math.round(this.get('vege') / this.get('days') * 100);

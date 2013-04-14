@@ -14,9 +14,10 @@
       this.collection = options.source.getWeek();
       this.collection.on('change:f1 change:f2 change:f3', this.collectionFood_changeHandler, this);
       this.collection.on('change:level', this.collectionLevel_changeHandler, this);
+      this.collection.on('reset', this.render, this);
       this.model.on('change', this.model_changeHandler, this);
+
       this.render();
-      this.createAddButton();
     },
     render: function () {
       this.renderSummary();
@@ -24,6 +25,7 @@
       var foods = {weekdays: this.collection.toJSON()};
       this.$('#detail').html(templates.detail(foods));
       this.$('#week').html(templates.week(foods));
+      this.createAddButton();
     },
     createAddButton: function () {
       this.addButton = this.addButton || this.$('.add-button').remove();
