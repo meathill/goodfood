@@ -10,8 +10,7 @@
         templates[this.id] = Handlebars.compile($(this).find('script').html());
         this.innerHTML = '';
       });
-      
-      this.collection = options.source.getWeek();
+
       this.collection.on('change:f1 change:f2 change:f3', this.collectionFood_changeHandler, this);
       this.collection.on('change:level', this.collectionLevel_changeHandler, this);
       this.collection.on('reset', this.collection_resetHandler, this);

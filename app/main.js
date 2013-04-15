@@ -23,7 +23,7 @@ function onDeviceReady() {
   });
   R.homepage = new GF.view.Homepage({
     el: '.main',
-    source: record,
+    collection: record.getWeek(),
     model: summary
   });
   R.router = new GF.Router();
@@ -38,9 +38,11 @@ function onDeviceReady() {
 
   GF.file.Manager.on('init', function () {
     console.log('app start');
+    navigator.splashscreen.hide();
     record.fetch();
     summary.fetch();
 
+    $('#summary').css('line-height', document.body.clientHeight - 408 + 'px');
     $('#appLoadingIndicator').remove();
     $('.main').removeClass('hide');
     Backbone.history.start({

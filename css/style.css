@@ -160,11 +160,13 @@ article p:last-child {
 /* --------------------------
  * 总评价
  * -------------------------- */
+#summary {
+  line-height: 75px;
+}
 #summary li {
   width:50%;
   min-height:75px;
   text-align: center;
-  line-height: 75px;
   box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.8), inset -1px 0 0 rgba(0, 0, 0, 0.6);
 }
 #summary .doll {
