@@ -2,12 +2,15 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.read('package.json'),
     concat: {
+      options: {
+        separator: ';'
+      },
       libs: {
         src: ['libs/cordova-2.6.0.js', 'libs/zepto.min.js', 'libs/underscore-min.js', 'libs/backbone-min.js', 'libs/handlebars.js'],
-        dest: 'build/js/libs/js'
+        dest: 'build/js/libs.js'
       },
       apps: {
-        src: ['app/main.js', 'app/file/Manager.js', 'app/utils/Utils.js', 'app/model/Summary.js', 'app/model/Record.js', 'app/view/About.js', 'app/view/Homepage.js', 'app/popup/PopupManager.js', 'app/popup/Intro.js', 'app/popup/Select.js', 'app/Router.js'],
+        src: ['app/main.js', 'app/file/FileManager.js', 'app/utils/Utils.js', 'app/model/Summary.js', 'app/model/Record.js', 'app/view/About.js', 'app/view/Homepage.js', 'app/popup/PopupManager.js', 'app/popup/Intro.js', 'app/popup/Select.js', 'app/Router.js'],
         dest: 'build/js/app.js'
       }
     },
@@ -38,24 +41,43 @@ module.exports = function (grunt) {
       }
     },
     copy: {
-      html: {
-        files: [
-          {src: ['index.html'], dest: 'build/index.html'}
-        ]
-      },
       img: {
-        files: [
-          {expand: true, cwd: 'img/', src: ['**'], dest: 'build/img/', filter: function (src) {
+        files: [{
+          expand: true,
+          cwd: 'img/',
+          src: ['**'],
+          dest: 'build/img/',
+          filter: function (src) {
             return src.substr(src.lastIndexOf('.') + 1) !== 'db';
-          }}
+          }
+        }]
+      },
+      android: {
+        files: [{
+          expand: true,
+          cwd: 'build/',
+          src: ['**'],
+          dest: 'android/assets/www/'
+        }]
+      }
+    },
+    replace: {
+      html: {
+        src: ['index.html'],
+        dest: 'build/',
+        replacements: [
+          {
+            from: /<!-- replace start -->[\S\s]+<!-- replace over -->/,
+            to: '<link rel="stylesheet" href="css/style.css" />\n<script src="js/libs.js"></script>\n<script src="js/app.min.js"></script>'
+          }
         ]
       }
-    }
+    },
   });
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin')
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-replace');
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy']);
+  grunt.loadNpmTasks('grunt-text-replace');
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy:img', 'replace', 'copy:android']);
 };

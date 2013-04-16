@@ -5,7 +5,7 @@
     events: {
       'tap .add-button': 'addButton_tapHandler'
     },
-    initialize: function (options) {
+    initialize: function () {
       this.$('script').parent().each(function (i) {
         templates[this.id] = Handlebars.compile($(this).find('script').html());
         this.innerHTML = '';
@@ -46,6 +46,7 @@
     addButton_tapHandler: function (event) {
       var day = this.$('.today').index(),
           index = this.$('.today .level-0').index();
+      $(event.currentTarget).parent().addClass('active');
       GF.popup.Manager.showSelectPopup(this.collection.at(day), index);
     },
     collection_resetHandler: function () {

@@ -19,6 +19,7 @@
     showPopup: function (popup) {
       if (popup === 'close') {
         GF.popup.Manager.close();
+        R.homepage.$('.level.active').removeClass('active');
         return;
       }
       GF.popup.Manager.popup(popup);

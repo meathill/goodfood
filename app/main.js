@@ -42,7 +42,9 @@ function onDeviceReady() {
 
   GF.file.Manager.on('init', function () {
     console.log('app start');
-    navigator.splashscreen.hide();
+    if (navigator.hasOwnProperty('splashscreen')) {
+      navigator.splashscreen.hide();
+    }
     record.fetch();
     summary.fetch();
 

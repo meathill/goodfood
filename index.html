@@ -89,7 +89,8 @@
         <ul>
           <li class="header">
             <span class="number">{{date}}</span><br />
-            <span class="hanzi">{{day}}</span></li>
+            <span class="hanzi">{{day}}</span>
+          </li>
           <li class="level level-{{f1}}"></li>
           <li class="level level-{{f2}}"></li>
           <li class="level level-{{f3}}"></li>
@@ -158,16 +159,16 @@
   </div>
   <div class="popup hide" id="intro">
     <div class="popup-header">
-      <a href="#/popup/select" class="button back-button">返回</a>
+      <a href="#/popup/select" class="button back-button button-prev">返回</a>
       <h3>说明</h3>
     </div>
     <div class="popup-body">
       <ul class="levels">
         <li class="active"><a href="#/intro2" class="level level-2">素</a></li>
         <li><a href="#/intro1" class="level level-1">大素</a></li>
-        <li><a href="#/intro3" class="level level-3">荤</a></li>
-        <li><a href="#/intro4" class="level level-4">大荤</a></li>
-        <li><a href="#/intro5" class="level level-5">未食</a></li>
+        <li class="vege"><a href="#/intro3" class="level level-3">荤</a></li>
+        <li class="vege"><a href="#/intro4" class="level level-4">大荤</a></li>
+        <li class="vege"><a href="#/intro5" class="level level-5">未食</a></li>
       </ul>
       <ul class="intros">
         <li class="active">
@@ -214,6 +215,7 @@
   </div>
 </div>
 
+<!-- replace start -->
 <link rel="stylesheet" href="./css/ratchet.css" />
 <link rel="stylesheet" href="./css/style.css" />
 <script src="libs/cordova-2.6.0.js"></script>
@@ -233,6 +235,7 @@
 <script src="app/popup/Intro.js"></script>
 <script src="app/popup/Select.js"></script>
 <script src="app/Router.js"></script>
+<!-- replace over -->
 <script>
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36091301-3']);

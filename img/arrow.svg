@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="200%" xmlns="http://www.w3.org/2000/svg">
+  <rect width="49" height="4" x="0" y="0" fill="#64C205" />
+  <polygon points="18,4 32,4 25,8" fill="#64C205" />
+  <rect width="49" height="4" x="50" y="0" fill="#DF7806" />
+  <polygon points="68,4 82,4 75,8" fill="#DF7806" />
+</svg>
