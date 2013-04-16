@@ -3,3 +3,6 @@ assets
 .idea
 *.db
 *.log
+build
+node_modules
+android

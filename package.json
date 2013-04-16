@@ -1,15 +1,28 @@
 {
   "name": "Goodfood",
-  "description":  "Record your food",
+  "description": "Record your food",
   "url": "https://github.com/meathill/goodfood",
-  "keywords": ["mobile", "phonegap", "healthy"],
+  "keywords": [
+    "mobile",
+    "phonegap",
+    "healthy"
+  ],
   "author": "Meathill <meathill@gmail.com> (http://blog.meathill.com/)",
   "license": "MIT",
   "dependencies": {
     "backbone": ">=1.0",
     "underscore": ">=1.4.4",
-    "zepto": ">=1.0",
+    "zepto-node": ">=1.0",
     "handlebars": ">=1.0.10"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-concat": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-replace": "~0.4.3"
   },
   "version": "1.0.0"
 }

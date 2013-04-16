@@ -1,4 +1,8 @@
 $(function () {
+  if (DEBUG) {
+    onDeviceReady();
+    return;
+  }
   document.addEventListener('deviceready', onDeviceReady, false);
 });
 function onDeviceReady() {
@@ -56,3 +60,5 @@ var GF = { // namespace
       popup: {}
     },
     R = {}; // runtime
+window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+var LocalFileSystem = LocalFileSystem || {PERSISTENT: 1};
