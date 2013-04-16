@@ -14,8 +14,9 @@
       this.on('change:meat change:vege', this.changeHandler, this);
     },
     fetch: function () {
+      var self = this;
       GF.file.Manager.load(STORAGE, function (storage) {
-        this.set(JSON.parse(storage));
+        self.set(JSON.parse(storage));
       });
     },
     getLevel: function (percent) {

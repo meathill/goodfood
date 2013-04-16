@@ -86,6 +86,8 @@
       var self = this;
       GF.file.Manager.load(STORAGE, function (storage) {
         self.reset(JSON.parse(storage));
+        self.getWeek();
+        self.currentWeek.trigger('reset');
       });
     },
     getFoodsByDay: function (model) {
@@ -93,7 +95,7 @@
     },
     getWeek: function (offset) {
       offset = offset || 0;
-      this.currentWeek.reset();
+      this.currentWeek.reset(null, {silent: true});
       var day = today.getDay();
       for (var i = 0; i < 7; i++) {
         var date = GF.utils.calculateDate(today, offset * 7 + i - day),
