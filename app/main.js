@@ -49,11 +49,11 @@ function onDeviceReady() {
     summary.fetch();
 
     $('#summary').css('line-height', document.body.clientHeight - 408 + 'px');
-    $('#appLoadingIndicator').remove();
     $('.main').removeClass('hide');
     Backbone.history.start({
       root: '/goodfood/'
     });
+    $('#appLoadingIndicator').remove();
   });
   GF.file.Manager.init();
 }

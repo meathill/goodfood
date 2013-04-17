@@ -1,9 +1,12 @@
 ;(function (ns) {
   'use strict';
-  var templates = {};
+  var offsetWeek = 0,
+      templates = {};
   ns.Homepage = Backbone.View.extend({
     events: {
-      'tap .add-button': 'addButton_tapHandler'
+      'tap .add-button': 'addButton_tapHandler',
+      'swipeLeft #detail,#week': 'swipeLeftHandler',
+      'swipeRight #detail,#week': 'swipeRightHandler'
     },
     initialize: function () {
       this.$('script').parent().each(function (i) {
@@ -60,6 +63,15 @@
     },
     model_changeHandler: function (model) {
       this.renderSummary();
+    },
+    swipeLeftHandler: function () {
+      offsetWeek += 1;
+      offsetWeek = offsetWeek > 0 ? 0 : offsetWeek;
+      R.record.getWeek(offsetWeek);
+    },
+    swipeRightHandler: function () {
+      offsetWeek -= 1;
+      R.record.getWeek(offsetWeek);
     }
   });
 })(GF.view);

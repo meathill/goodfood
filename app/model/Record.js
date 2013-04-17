@@ -87,7 +87,6 @@
       GF.file.Manager.load(STORAGE, function (storage) {
         self.reset(JSON.parse(storage));
         self.getWeek();
-        self.currentWeek.trigger('reset');
       });
     },
     getFoodsByDay: function (model) {
@@ -110,6 +109,7 @@
         }
         this.currentWeek.add(model);
       }
+      this.currentWeek.trigger('reset');
       return this.currentWeek;
     },
     save: function () {
