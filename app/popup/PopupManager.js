@@ -6,9 +6,15 @@
     close: function () {
       if (curr) {
         curr
-          .hide()
+          .addClass('flipOutX')
           .trigger('hide');
-        curr = null;
+        setTimeout(function () {
+          curr
+            .removeClass('flipOutX flipInX')
+            .addClass('hide');
+          curr = null;
+        }, 500);
+
       }
       $('#popup-cover').hide();
     },
@@ -18,18 +24,20 @@
         if (popup[0] === curr[0]) {
           return;
         }
-        curr.hide();
+        curr.addClass('hide');
       }
       $('#popup-cover').show();
       curr = popup;
       curr
-        .show()
+        .removeClass('hide')
+        .addClass('flipInX')
         .trigger('show');
     },
     showSelectPopup: function (model, index) {
       this.popup('select');
       select.model = model;
       select.index = index;
+      select.render();
     }
   }
 

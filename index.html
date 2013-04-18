@@ -23,7 +23,9 @@
   * {
     -webkit-text-size-adjust:none;
   }
-
+  .hide {
+    display: none;
+  }
   #appLoadingIndicator {
     position: relative;
     text-align: center;
@@ -122,11 +124,11 @@
   </ul>
 </div>
 
-<header class="bar-title about hide">
+<header class="bar-title about animated hide">
   <a class="button-prev close-button" href="#/close">Previous</a>
   <h1 class="title">关于荤素记账</h1>
 </header>
-<div class="content content-padded about hide">
+<div class="content content-padded about animated hide">
   <article>
     <p>荤素记帐是一款通过记录饮食情况，优化你的饮食结构，从而改善身材的应用。在这款应用中，“素”与“荤”不再单纯的是“菜”与“肉”的区别，而更像是两种饮食倾向，纯蔬菜的麻辣香锅，我们也算做荤菜，而像适量的白水煮鸡胸肉，我们算做是素菜。这款应用会给你一个标准，而实际进餐中是荤是素的决定权在你手里。</p>
     <p>我们不会建议你用极端的饮食结构达到减肥的目的。我们相信，只要你的饮食健康合理，吃的开心，身材自然会达到最好的状态。</p>
@@ -138,7 +140,7 @@
 </div>
 
 <div id="popup-cave">
-  <div class="popup hide" id="select">
+  <div class="popup animated hide" id="select">
     <div class="popup-header">
       <h3>请选择午餐</h3>
     </div>
@@ -157,7 +159,7 @@
       </ul>
     </div>
   </div>
-  <div class="popup hide" id="intro">
+  <div class="popup animated hide" id="intro">
     <div class="popup-header">
       <a href="#/popup/select" class="button back-button button-prev">返回</a>
       <h3>说明</h3>
@@ -217,6 +219,7 @@
 
 <!-- replace start -->
 <link rel="stylesheet" href="./css/ratchet.css" />
+<link rel="stylesheet" href="./css/animate.min.css" />
 <link rel="stylesheet" href="./css/style.css" />
 <script src="libs/cordova-2.6.0.js"></script>
 <script src="libs/zepto.min.js"></script>

@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       },
       minify: {
         files: {
-          'build/css/style.css': ['css/ratchet.css', 'css/style.css']
+          'build/css/style.css': ['css/ratchet.css', 'css/animate.min.css', 'css/style.css']
         }
       }
     },

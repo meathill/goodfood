@@ -8,7 +8,8 @@
     routes: {
       'about': 'showAbout',
       'homepage': 'showHomepage',
-      'popup/:popup': 'showPopup'
+      'popup/:popup': 'showPopup',
+      'popup/select/:day/:index': 'showSelectPopup'
     },
     showAbout: function () {
       R.about.show();
@@ -23,6 +24,9 @@
         return;
       }
       GF.popup.Manager.popup(popup);
+    },
+    showSelectPopup: function (day, index) {
+      GF.popup.Manager.showSelectPopup(R.record.currentWeek.at(day), index);
     }
   });
 })(GF);

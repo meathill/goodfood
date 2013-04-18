@@ -21,15 +21,15 @@
     },
     getLevel: function (percent) {
       if (percent < 40) {
-        return '#C00';
+        return 'bad';
       } else if (percent < 60) {
-        return '#CC0';
+        return 'vege';
       } else if (percent < 80) {
-        return '#11A106';
+        return 'good';
       } else if (percent < 90) {
-        return '#CC0';
+        return 'meat';
       } else {
-        return '#C00';
+        return 'bad';
       }
     },
     getDesc: function (percent) {

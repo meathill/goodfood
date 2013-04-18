@@ -1,10 +1,11 @@
 ;(function (ns) {
   'use strict';
   var offsetWeek = 0,
+      today = 7,
       templates = {};
   ns.Homepage = Backbone.View.extend({
     events: {
-      'tap .add-button': 'addButton_tapHandler',
+      'tap #detail .level': 'level_tapHandler',
       'swipeLeft #detail,#week': 'swipeLeftHandler',
       'swipeRight #detail,#week': 'swipeRightHandler'
     },
@@ -20,6 +21,7 @@
       this.model.on('change', this.model_changeHandler, this);
 
       this.render();
+      this.$el.removeClass('hide');
     },
     render: function () {
       this.renderSummary();
@@ -28,6 +30,9 @@
       this.$('#detail').html(templates.detail(foods));
       this.$('#week').html(templates.week(foods));
       this.createAddButton();
+
+      today = this.$('.today');
+      today = today.length > 0 ? today.index() : 7;
     },
     createAddButton: function () {
       this.addButton = this.addButton || this.$('.add-button').remove();
@@ -46,12 +51,6 @@
       var data = {weekdays: [{level: value}]};
       this.$('#week').children().eq(this.collection.indexOf(model)).replaceWith(templates.week(data));
     },
-    addButton_tapHandler: function (event) {
-      var day = this.$('.today').index(),
-          index = this.$('.today .level-0').index();
-      $(event.currentTarget).parent().addClass('active');
-      GF.popup.Manager.showSelectPopup(this.collection.at(day), index);
-    },
     collection_resetHandler: function () {
       this.render();
     },
@@ -60,6 +59,17 @@
     },
     collectionLevel_changeHandler: function (model, level) {
       this.renderDays(model, level);
+    },
+    level_tapHandler: function (event) {
+      var target = $(event.currentTarget),
+          parent = target.closest('.single-day'),
+          day = parent.index(),
+          index = target.index();
+      if (day > today) {
+        return;
+      }
+      target.addClass('active');
+      R.router.navigate('#/popup/select/' + day + '/' + index);
     },
     model_changeHandler: function (model) {
       this.renderSummary();

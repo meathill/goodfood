@@ -49,7 +49,6 @@ function onDeviceReady() {
     summary.fetch();
 
     $('#summary').css('line-height', document.body.clientHeight - 408 + 'px');
-    $('.main').removeClass('hide');
     Backbone.history.start({
       root: '/goodfood/'
     });
