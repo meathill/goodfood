@@ -13,10 +13,9 @@
             .removeClass('flipOutX flipInX')
             .addClass('hide');
           curr = null;
+          $('#popup-cover').hide();
         }, 500);
-
       }
-      $('#popup-cover').hide();
     },
     popup: function (popup) {
       popup = _.isString(popup) ? $('#' + popup) : popup;

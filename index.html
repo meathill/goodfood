@@ -84,23 +84,21 @@
 </header>
 <div class="content main hide">
   <a class="round-button add-button" href="#/popup/select">+</a>
-  <ul id="detail">
+  <div id="detail">
     <script type="text/html-template">
       {{#each weekdays}}
-      <li class="single-day {{#if today}}today{{/if}}">
-        <ul>
-          <li class="header">
-            <span class="number">{{date}}</span><br />
-            <span class="hanzi">{{day}}</span>
-          </li>
-          <li class="level level-{{f1}}"></li>
-          <li class="level level-{{f2}}"></li>
-          <li class="level level-{{f3}}"></li>
-        </ul>
-      </li>
+      <div class="single-day {{#if today}}today{{/if}}">
+        <div class="header">
+          <span class="number">{{date}}</span><br />
+          <span class="hanzi">{{day}}</span>
+        </div>
+        <div class="level level-{{f1}}"></div>
+        <div class="level level-{{f2}}"></div>
+        <div class="level level-{{f3}}"></div>
+      </div>
       {{/each}}
     </script>
-  </ul>
+  </div>
   <h2>当日评价</h2>
   <ul id="week">
     <script type="text/html-template">
@@ -136,7 +134,7 @@
 </div>
 
 <div id="popup-cover">
-  
+
 </div>
 
 <div id="popup-cave">
@@ -219,7 +217,7 @@
 
 <!-- replace start -->
 <link rel="stylesheet" href="./css/ratchet.css" />
-<link rel="stylesheet" href="./css/animate.min.css" />
+<link rel="stylesheet" href="./css/animate.css" />
 <link rel="stylesheet" href="./css/style.css" />
 <script src="libs/cordova-2.6.0.js"></script>
 <script src="libs/zepto.min.js"></script>
