@@ -7,6 +7,45 @@
 */
 
 /* ====================================
+ *     布局
+ * ==================================== */
+html,
+body {
+  height:100%;
+}
+body,
+.content,
+#detail,
+#week,
+#summary,
+#summary li {
+  display: -webkit-box;
+  display: box;
+}
+.single-day,
+#week li,
+.content,
+#summary {
+  -webkit-box-flex:1;
+  box-flex:1;
+}
+.single-day,
+#week li,
+#summary {
+  -webkit-box-orient:horizontal;
+  box-orient:horizontal;
+}
+body,
+.content {
+  -webkit-box-orient:vertical;
+  box-orient:vertical;
+}
+#summary li {
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+}
+
+/* ====================================
  * 全局
  * ==================================== */
 body,
@@ -85,18 +124,11 @@ article p:last-child {
   color:#FFF;
   border-top:1px solid #8D8D8D;
 }
-#detail,
-#week {
-  display: -webkit-box;
-  display:box;
-}
 /* --------------------------
  * 周列表
  * -------------------------- */
 .single-day,
 #week li {
-  -webkit-box-flex:1;
-  box-flex:1;
   box-shadow: inset 1px 0 1px rgba(255, 255, 255, 0.8), inset -1px 0 1px rgba(0, 0, 0, 0.4);
 }
 .single-day div {

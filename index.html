@@ -111,19 +111,23 @@
   <ul id="summary">
     <script type="text/html-template">
       <li>
-        素食
-        <span class="doll">
-          <span class="doll doll-inner" style="height:{{percent}}%"></span>
-        </span>
-        {{percent}}%
+        <div>
+          素食
+          <span class="doll">
+            <span class="doll doll-inner" style="height:{{percent}}%"></span>
+          </span>
+          {{percent}}%
+        </div>
       </li>
-      <li>合理性 <strong class="{{level}}">{{desc}}</strong></li>
+      <li>
+        <div>合理性 <strong class="{{level}}">{{desc}}</strong></div>
+      </li>
     </script>
   </ul>
 </div>
 
 <header class="bar-title about animated hide">
-  <a class="button-prev close-button" href="#/close">Previous</a>
+  <a class="button-prev close-button" href="#/close">返回</a>
   <h1 class="title">关于荤素记账</h1>
 </header>
 <div class="content content-padded about animated hide">
