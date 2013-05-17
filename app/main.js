@@ -39,21 +39,6 @@ function onDeviceReady() {
       navigator.app.exitApp();
     }
   }, false);
-
-  GF.file.Manager.on('init', function () {
-    console.log('app start');
-    if (navigator.hasOwnProperty('splashscreen')) {
-      navigator.splashscreen.hide();
-    }
-    record.fetch();
-    summary.fetch();
-
-    Backbone.history.start({
-      root: '/goodfood/'
-    });
-    $('#appLoadingIndicator').remove();
-  });
-  GF.file.Manager.init();
 }
 var GF = { // namespace
       file: {},

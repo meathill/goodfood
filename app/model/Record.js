@@ -1,15 +1,24 @@
 ;(function (ns) {
   'use strict';
-  var STORAGE = 'days.json',
-      today = new Date(),
+  var today = new Date(),
       Model = Backbone.Model.extend({
         defaults: {
           f1: 0, // 早餐breakfast
           f2: 0, // 午餐lunch
           f3: 0, // 晚餐meal
-          level: 0, // 当日评价，1为素，2为荤
-          date: 0, // 月.日
-          day: 0 // 周几
+          level: 0 // 当日评价，1为素，2为荤
+        },
+        initialize: function (options) {
+          if (!'date' in options) {
+            var date = new Date(this.id);
+            this.set({
+              date: date,
+              day: GF.utils.WEEKDAYS[date.getDay()]
+            });
+          }
+        },
+        toJSON: function () {
+          return _.pick(this.attributes, 'f1', 'f2', 'f3', 'level');
         }
       });
   
@@ -17,8 +26,14 @@
     currentWeek: null,
     model: Model,
     initialize: function () {
+      var storage = window.localStorage.getItem('days');
       this.currentWeek = new Backbone.Collection();
       this.currentWeek.on('change', this.week_changeHandler, this);
+
+      if (!storage) {
+        return;
+      }
+      this.reset(JSON.parse(storage));
     },
     checkDays: function (model, value) {
       // 因为要计算6餐饭的影响，所以只需要查前两天和后两天即可
@@ -82,13 +97,6 @@
         }
       }
     },
-    fetch: function () {
-      var self = this;
-      GF.file.Manager.load(STORAGE, function (storage) {
-        self.reset(JSON.parse(storage));
-        self.getWeek();
-      });
-    },
     getFoodsByDay: function (model) {
       return _.values(_.pick(model, 'f1', 'f2', 'f3'));
     },
@@ -116,7 +124,7 @@
       var data = this.map(function (model) {
         return _.omit(model.attributes, 'today');
       });
-      GF.file.Manager.save(STORAGE, JSON.stringify(data));
+      window.localStorage.setItem('days', JSON.stringify(data));
     },
     week_changeHandler: function (model, value) {
       if (this.indexOf(model) === -1) {
