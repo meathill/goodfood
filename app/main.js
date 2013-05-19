@@ -4,6 +4,13 @@ $(function () {
     return;
   }
   document.addEventListener('deviceready', onDeviceReady, false);
+  document.addEventListener('backbutton', function () {
+    if (location.hash === '#/about') {
+      R.router.navigate('#/homepage');
+    } else {
+      navigator.app.exitApp();
+    }
+  }, false);
 });
 function onDeviceReady() {
   'use strict';
@@ -32,13 +39,10 @@ function onDeviceReady() {
   });
   R.router = new GF.Router();
 
-  document.addEventListener('backbutton', function () {
-    if (location.hash === '#/about') {
-      R.router.navigate('#/homepage');
-    } else {
-      navigator.app.exitApp();
-    }
-  }, false);
+  Backbone.history.start({
+    root: '/goodfood/'
+  });
+  $('#appLoadingIndicator').remove();
 }
 var GF = { // namespace
       file: {},
@@ -48,5 +52,3 @@ var GF = { // namespace
       popup: {}
     },
     R = {}; // runtime
-window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-var LocalFileSystem = LocalFileSystem || {PERSISTENT: 1};

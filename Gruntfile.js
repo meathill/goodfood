@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         separator: ';'
       },
       libs: {
-        src: ['libs/cordova-2.6.0.js', 'libs/zepto.min.js', 'libs/underscore-min.js', 'libs/backbone-min.js', 'libs/handlebars.js'],
+        src: ['libs/cordova-2.7.0.js', 'libs/zepto.min.js', 'libs/underscore-min.js', 'libs/backbone-min.js', 'libs/handlebars.js'],
         dest: 'build/js/libs.js'
       },
       apps: {

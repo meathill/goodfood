@@ -9,16 +9,13 @@
           level: 0 // 当日评价，1为素，2为荤
         },
         initialize: function (options) {
-          if (!'date' in options) {
+          if (!('date' in options)) {
             var date = new Date(this.id);
             this.set({
-              date: date,
+              date: GF.utils.formatDate(date, 'mm-dd'),
               day: GF.utils.WEEKDAYS[date.getDay()]
             });
           }
-        },
-        toJSON: function () {
-          return _.pick(this.attributes, 'f1', 'f2', 'f3', 'level');
         }
       });
   
@@ -122,7 +119,7 @@
     },
     save: function () {
       var data = this.map(function (model) {
-        return _.omit(model.attributes, 'today');
+        return _.omit(model.attributes, 'today', 'date', 'day');
       });
       window.localStorage.setItem('days', JSON.stringify(data));
     },
